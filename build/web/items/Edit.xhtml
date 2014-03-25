@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditItemsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditItemsLabel_idItem}" for="idItem" />
+                    <h:inputText id="idItem" value="#{itemsController.selected.idItem}" title="#{bundle.EditItemsTitle_idItem}" required="true" requiredMessage="#{bundle.EditItemsRequiredMessage_idItem}"/>
+                    <h:outputLabel value="#{bundle.EditItemsLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{itemsController.selected.name}" title="#{bundle.EditItemsTitle_name}" required="true" requiredMessage="#{bundle.EditItemsRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.EditItemsLabel_kolStr}" for="kolStr" />
+                    <h:inputText id="kolStr" value="#{itemsController.selected.kolStr}" title="#{bundle.EditItemsTitle_kolStr}" required="true" requiredMessage="#{bundle.EditItemsRequiredMessage_kolStr}"/>
+                    <h:outputLabel value="#{bundle.EditItemsLabel_author}" for="author" />
+                    <h:inputText id="author" value="#{itemsController.selected.author}" title="#{bundle.EditItemsTitle_author}" required="true" requiredMessage="#{bundle.EditItemsRequiredMessage_author}"/>
+                    <h:outputLabel value="#{bundle.EditItemsLabel_url}" for="url" />
+                    <h:inputText id="url" value="#{itemsController.selected.url}" title="#{bundle.EditItemsTitle_url}" required="true" requiredMessage="#{bundle.EditItemsRequiredMessage_url}"/>
+                    <h:outputLabel value="#{bundle.EditItemsLabel_idCategory}" for="idCategory" />
+                    <h:selectOneMenu id="idCategory" value="#{itemsController.selected.idCategory}" title="#{bundle.EditItemsTitle_idCategory}" required="true" requiredMessage="#{bundle.EditItemsRequiredMessage_idCategory}">
+                        <f:selectItems value="#{categoryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{itemsController.update}" value="#{bundle.EditItemsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditItemsViewLink}"/>
+                <br />
+                <h:commandLink action="#{itemsController.prepareList}" value="#{bundle.EditItemsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditItemsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
